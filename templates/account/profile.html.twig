@@ -1,0 +1,28 @@
+{% extends '_template.html.twig' %}
+
+{% block title %} Profil {% endblock %}
+
+{% block content %}
+<div class="section">
+    <h1 class="title">Mon Profil</h1>
+    {% include 'includes/flashes.html.twig' %}
+    {{ form_start(profileForm) }}
+        {{ form_row(profileForm.email, {
+            label : "Adresse email"
+        }) }}
+        {{ form_row(profileForm.pseudo, {
+            label : "Pseudo"
+        }) }}
+        {{ form_row(profileForm.nom, {
+            label : "Nom"
+        }) }}
+        {{ form_row(profileForm.prenom, {
+            label : "Prenom"
+        }) }}
+        {{ form_row(profileForm.telephone, {
+            label : "Telephone"
+        }) }}
+    <button type="submit" class="button is-primary is-fullwidth">Enregistrer</button>
+    {{ form_end(profileForm) }}
+</div>
+{% endblock %}
