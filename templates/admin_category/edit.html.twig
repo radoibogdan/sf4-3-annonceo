@@ -1,0 +1,15 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}Modifier la catégorie{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <h1 class="title">Modifier la categorie {{ category.nom }}</h1>
+
+        {% include 'includes/flashes.html.twig' %}
+
+        {% include 'admin_category/_category_form.html.twig' %}
+    </div>
+
+{% endblock %}
+

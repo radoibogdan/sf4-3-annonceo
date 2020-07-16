@@ -1,0 +1,24 @@
+{% extends "_admin_template.html.twig" %}
+
+{% block title %}
+    Supprimer la catégorie {{ category.nom }}
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <h1 class="title">Supprimer la catégorie "{{ category.nom }}"</h1>
+
+        {{ form_start(deletionForm) }}
+
+        {{ form_row(deletionForm.confirmation, {
+            label: 'Je confirme la suppression de la category "' ~ category.nom ~ '"'
+        }) }}
+
+        <button type="submit" class="button is-danger is-fullwidth">
+            Supprimer
+        </button>
+
+        {{ form_end(deletionForm)}}
+
+    </div>
+{% endblock %}

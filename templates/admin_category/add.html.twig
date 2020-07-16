@@ -1,0 +1,14 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}Nouvelle Catégorie{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <h1 class="title">Nouvelle Catégorie</h1>
+
+        {% include 'includes/flashes.html.twig' %}
+
+        {% include 'admin_category/_category_form.html.twig' %}
+
+    </div>
+{% endblock %}

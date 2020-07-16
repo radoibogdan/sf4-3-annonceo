@@ -1,0 +1,49 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}Liste des categories{% endblock %}
+
+{% block content %}
+    <div class="section">
+
+        <h1 class="title">Liste des categories</h1>
+
+        <a href="{{ path('admin_category_add') }}" class="button is-success mb-4">
+            Nouvelle catégorie
+        </a>
+
+        {% include 'includes/flashes.html.twig' %}
+
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom de la catégorie</th>
+                <th>Nombre d'annonces</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {#
+            La boucle sur category_list
+                Dernière colonne : Modifier & Supprimer
+            #}
+            {% for categorie in categorie_list %}
+                <tr>
+                    <td>{{ categorie.id }}</td>
+                    <td>{{ categorie.nom }}</td>
+                    <td>{{ categorie.getAnnonces|length }}</td>
+                    <td>
+                        <div class="buttons is-pulled-right">
+                            <a href="{{ path('admin_category_edit', {id:categorie.id}) }}" class="button is-success">Modifier</a>
+                            <a href="{{ path('admin_category_delete', {id:categorie.id}) }}" class="button is-danger">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+{% endblock %}
