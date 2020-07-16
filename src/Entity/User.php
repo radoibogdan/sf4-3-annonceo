@@ -309,6 +309,7 @@ class User implements UserInterface
 
     /**
      * @return Collection|Note[]
+     * les notes ou il est auteur
      */
     public function getNotes(): Collection
     {
@@ -340,6 +341,7 @@ class User implements UserInterface
 
     /**
      * @return Collection|Note[]
+     * les notes ou il est user
      */
     public function getNotesUtilisateur(): Collection
     {
