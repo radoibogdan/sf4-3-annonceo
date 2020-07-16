@@ -40,6 +40,9 @@ class UserFixtures extends Fixture
                 ->setInscription($faker->dateTimeBetween('-1 year'))
             ;
             $manager->persist($user);
+            // Lier la référence ($reference) à l'entité ($user), pour la récupérer dans d'autres fixtures
+            $reference = 'user_' . $i;
+            $this->addReference($reference,$user);
         }
 
         // Créer 5 moderateurs
