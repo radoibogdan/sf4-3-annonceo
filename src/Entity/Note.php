@@ -32,6 +32,18 @@ class Note
      */
     private $creation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="notes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="notes_utilisateur")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +81,30 @@ class Note
     public function setCreation(\DateTimeInterface $creation): self
     {
         $this->creation = $creation;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?User $auteur): self
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -51,6 +53,28 @@ class Annonce
      * @ORM\Column(type="date")
      */
     private $creation;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="annonce")
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,6 +161,61 @@ class Annonce
     public function setCreation(\DateTimeInterface $creation): self
     {
         $this->creation = $creation;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?User $auteur): self
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commentaire[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->contains($commentaire)) {
+            $this->commentaires->removeElement($commentaire);
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getAnnonce() === $this) {
+                $commentaire->setAnnonce(null);
+            }
+        }
 
         return $this;
     }
