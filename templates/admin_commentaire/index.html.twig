@@ -1,0 +1,48 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}Liste des commentaires{% endblock %}
+
+{% block content %}
+    <div class="section">
+
+        <h1 class="title">Liste des commentaires</h1>
+
+        {% include 'includes/flashes.html.twig' %}
+
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Auteur</th>
+                <th>Annonce</th>
+                <th>Contenu commentaire</th>
+                <th>Crée le</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {#
+            La boucle sur commentaires_list
+                Dernière colonne : Modifier & Supprimer
+            #}
+            {% for commentaire in list_commentaires %}
+                <tr>
+                    <td>{{ commentaire.id }}</td>
+                    <td>{{ commentaire.auteur.prenom }}</td>
+                    <td>{{ commentaire.annonce.titre}}</td>
+                    <td>{{ commentaire.commentaire }}</td>
+                    <td>{{ commentaire.creation | date("d/m/y")}}</td>
+                    <td>
+                        <div class="buttons is-pulled-right">
+                            <a href="{{ path('admin_commentaire_delete', {id:commentaire.id}) }}" class="button is-danger">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+{% endblock %}

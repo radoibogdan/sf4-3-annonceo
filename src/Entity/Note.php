@@ -34,13 +34,13 @@ class Note
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="notes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $auteur;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="notes_utilisateur")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $user;
 

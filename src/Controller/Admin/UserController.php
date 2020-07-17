@@ -70,7 +70,7 @@ class UserController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
             $this->addFlash('success','L\'utilisateur a été supprimé');
-            return $this->render('admin_user/index.html.twig');
+            return $this->redirectToRoute('admin_user_list');
         }
         return $this->render('admin_user/delete.html.twig',[
             'deletionForm'=> $form->createView(),
