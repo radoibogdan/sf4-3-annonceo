@@ -1,0 +1,44 @@
+<h1 class="title mt-4">Accueil - Les Nouveaux annonces</h1>
+<div class="columns is-multiline">
+    {% for annonce in annonces %}
+        <div class="column is-one-third"> {# is-one-half / is-one-quarter #}
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <figure class="image is-128x128">
+                            <img src="https://loremflickr.com/256/256/clothes/all?lock={{annonce.id}}" alt="Image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p>
+                                <a href="{#{{ path('annonce_show',{id: annonce.id}) }}#}" class="has-text-primary">
+                                    <strong>{{annonce.titre}}</strong>
+                                </a>
+                                <small>{{annonce.creation|date('d/m/Y')}}</small>
+                                <br>
+                                <a href="{#{{ path('category_show',{id: annonce.category.id}) }}#}" class="has-background-success has-text-white">
+                                    <strong>{{annonce.categorie.nom}}</strong>
+                                </a>
+                                {#
+                                    <br>
+                                    <small class="has-background-success has-text-white">{{product.category.name}}</small>
+                                    <br>
+                                #}
+                                {{annonce.description|slice(0,50)}}
+                            </p>
+                            <div class="tags has-addons">
+                                <span class="tag">{{ annonce.prixFloat|number_format(2, '.', ' ') }}</span>
+                                <span class="tag is-primary">
+                                    <span class="icon">
+                                        <i class="fas fa-euro-sign"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    {% endfor %}
+</div>

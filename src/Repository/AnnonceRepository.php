@@ -19,6 +19,20 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
+    public function findAnnonces()
+    {
+        # Création d'un QueryBuilder (constructeur de requête)
+        # p             = alias de Annonce
+        # setParameter  = bindParam de PDO
+        return $this->createQueryBuilder('a')
+            ->where('a.creation >= :last_month')
+            ->setParameter('last_month', new \DateTime('-1 month'))
+            ->orderBy('a.creation', 'DESC')
+            ->getQuery()            # obtenir la requête
+            ->getResult()           # obtenir un tableau d'entités
+            ;
+    }
+
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */
