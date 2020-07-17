@@ -1,0 +1,13 @@
+{% extends "_template.html.twig" %}
+
+{% block title %}Liste intégrale des annonces{% endblock %}
+
+
+{% block content %}
+    <div class="section">
+        <h1 class="title mt-4">Liste des annonces: {{ list_annonce|length}}</h1>
+        {# Inclusion de fichiers + passage de variable #}
+        {% include "includes/annonce_list.html.twig" with {annonces: list_annonce} %}
+
+    </div>
+{% endblock %}

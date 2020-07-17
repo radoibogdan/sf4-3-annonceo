@@ -27,8 +27,11 @@
                     <span>Back-Office</span>
                 </a>
             {% endif %}
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="{{ path('annonces') }}">
                 Annonces
+            </a>
+            <a class="navbar-item" href="{{ path('annonce_add') }}">
+                Créer une annonce
             </a>
         </div>
 
@@ -59,7 +62,7 @@
         </div>
     </div>
 </nav>
-
+{% include 'includes/flashes.html.twig' %}
 {# Bloc qui contiendra le contenu de chaque page #}
 {% block content %} {% endblock %}
 

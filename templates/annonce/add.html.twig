@@ -1,0 +1,41 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}Créer une annonce{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <h1 class="title">Créer une annonce</h1>
+
+        {% include 'includes/flashes.html.twig' %}
+
+        {{ form_start(annonceForm) }}
+        {{ form_row(annonceForm.titre,{
+            label : 'Titre de l\'annonce'
+        }) }}
+        {{ form_row(annonceForm.description,{
+            label : 'Description'
+        }) }}
+        {{ form_row(annonceForm.prix,{
+            label : 'Prix'
+        }) }}
+        {{ form_row(annonceForm.ville,{
+            label : 'Ville'
+        }) }}
+        {{ form_row(annonceForm.codePostal,{
+            label : 'Code Postal'
+        }) }}
+        {{ form_row(annonceForm.adresse,{
+            label : 'Adresse'
+        }) }}
+        {{ form_row(annonceForm.categorie,{
+            label : 'Catégorie de l\'annonce'
+        }) }}
+        {{ form_row(annonceForm.auteur.setRendered() ) }}
+        <button type="submit" class="button is-success is-fullwidth">
+            Enregistrer
+        </button>
+        {{ form_end(annonceForm) }}
+
+    </div>
+
+{% endblock %}

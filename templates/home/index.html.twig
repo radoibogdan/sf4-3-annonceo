@@ -6,7 +6,8 @@
 
 {% block content %}
     <div class="section">
+        <h1 class="title">Les nouveaux annonces</h1>
         {# inclusion de fichier & passage de variables #}
-        {% include "includes/product_list.html.twig" with {annonces:list_annonce} %}
+        {% include "includes/annonce_list.html.twig" with {annonces:list_annonce} %}
     </div>
 {% endblock %}

@@ -1,0 +1,42 @@
+{% extends "_template.html.twig" %}
+
+{% block title %} {{annonce.titre}} {% endblock %}
+
+{% block content %}
+    <section class="section">
+        <div class="columns">
+            <div class="column is-two-fifth">
+                <figure class="image is-1by1">
+                    <img src="https://loremflickr.com/1024/1024/clothes/all?lock={{ annonce.id }}">
+                </figure>
+            </div>
+
+            <div class="column">
+                <h1 class="title has-text-primary">
+                    {{annonce.titre}}
+                </h1>
+
+                <p class="content">
+                   {{annonce.description}}
+                </p>
+
+                <small class="has-background-success has-text-white"><span>Catégorie : </span> {{annonce.categorie.nom}}</small>
+
+                <div class="tags has-addons are-large mt-4">
+                <span class="tag">
+                    {{annonce.prixFloat|number_format(2 , '.' , ' ')}} {# . pour les centimes #}
+                </span>
+                    <span class="tag is-primary">
+                    <span class="icon"><i class="fas fa-euro-sign"></i></span>
+                </span>
+                </div>
+
+                <hr>
+                <h6 class="is-size-7">
+                    <span class="icon has-text-info"><i class="fas fa-info-circle"></i></span>
+                    <span>Annonce ajoutée le {{annonce.creation|date('d/m/Y')}}</span>
+                </h6>
+            </div>
+        </div>
+    </section>
+{% endblock %}
