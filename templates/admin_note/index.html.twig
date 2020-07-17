@@ -1,0 +1,51 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}Liste des notes{% endblock %}
+
+{% block content %}
+    <div class="section">
+
+        <h1 class="title">Liste des notes</h1>
+
+        {% include 'includes/flashes.html.twig' %}
+
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Auteur</th>
+                <th>Utilisateur</th>
+                <th>Note</th>
+                <th>Avis</th>
+                <th>Crée le</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {#
+            La boucle sur list_notes
+                Dernière colonne : Modifier & Supprimer
+            #}
+            {% for note in list_notes %}
+                <tr>
+                    <td>{{ note.id }}</td>
+                    <td>{{ note.auteur.pseudo }}</td>
+                    <td>{{ note.user.pseudo}}</td>
+                    <td>{{ note.note}}</td>
+                    <td>{{ note.avis }}</td>
+                    <td>{{ note.creation | date("d/m/y")}}</td>
+                    <td>
+                        <div class="buttons is-pulled-right">
+                            <a href="{{ path('admin_note_delete', {id:note.id}) }}" class="button is-danger">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+{% endblock %}
+
