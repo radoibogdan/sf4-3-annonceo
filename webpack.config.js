@@ -66,9 +66,9 @@ Encore
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
 
-    // uncomment if you use API Platform Admin (composer req api-admin)
+    // uncomment if you use API Platform Admin (composer req api-admin_annonce)
     //.enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
+    //.addEntry('admin_annonce', './assets/js/admin_annonce.js')
 ;
 
 module.exports = Encore.getWebpackConfig();

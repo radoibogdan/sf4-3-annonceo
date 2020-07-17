@@ -1,0 +1,64 @@
+{% extends '_admin_template.html.twig' %}
+
+{% block title %}Liste des annonces{% endblock %}
+
+{% block content %}
+    <div class="section">
+
+        <h1 class="title">Liste des annonces</h1>
+
+        {% include 'includes/flashes.html.twig' %}
+
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Titre de l'annonce</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Ville</th>
+                <th>Code Postal</th>
+                <th>Adresse</th>
+                <th>Créé le</th>
+                <th>Catégorie</th>
+                <th>Auteur</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {#
+            La boucle sur annonces_list
+                Dernière colonne : Modifier & Supprimer
+            #}
+            {% for annonce in annonces_list %}
+                <tr>
+                    <td>{{ annonce.id }}</td>
+                    <td>
+{#                        <a href="{{ path('annonce_show', {id:annonce.id}) }}" target="_blank">#}
+{#                            {{ annonce.titre }}#}
+{#                        </a>#}
+                        {{ annonce.titre }}
+                    </td>
+                    <td>{{ annonce.description | slice(0, 20) }}</td>
+                    <td class="has-text-right">{{ annonce.prixFloat | number_format(2, '.', ' ') }} € </td>
+                    <td>{{ annonce.ville }}</td>
+                    <td>{{ annonce.codePostal }}</td>
+                    <td>{{ annonce.adresse}}</td>
+                    <td>{{ annonce.creation | date("d/m/y")}}</td>
+                    <td>{{ annonce.categorie.nom }}</td>
+                    <td>{{ annonce.auteur.prenom }} {{ annonce.auteur.nom }}</td>
+                    <td>
+                        <div class="buttons is-pulled-right">
+                            <a href="{{ path('admin_annonce_edit', {id:annonce.id}) }}" class="button is-success">Modifier</a>
+                            <a href="{{ path('admin_annonce_delete', {id:annonce.id}) }}" class="button is-danger">Supprimer</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+    </div>
+{% endblock %}

@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
+ * @ORM\HasLifecycleCallbacks()
+ * HasLifecycleCallbacks + méthode prePersist =>
+ * Permet de modifier l’entité pour enregister la date de création du produit à la date ou on valide le produit
  */
 class Annonce
 {
@@ -76,6 +79,18 @@ class Annonce
         $this->commentaires = new ArrayCollection();
     }
 
+    /**
+     * Méthode exécutée avant l'insertion en base
+     * @ORM\PrePersist()
+     * Modifier l’entité pour enregister la date de création de l'annonce à la date ou on créé le produit
+     */
+    public function prePersist()
+    {
+        if ($this->creation === null) {
+            $this->creation = new \DateTime();
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -108,6 +123,14 @@ class Annonce
     public function getPrix(): ?int
     {
         return $this->prix;
+    }
+
+    /**
+     * Obtenir le prix en décimal: 1500 -> 15.00
+     */
+    public function getPrixFloat(): ?float
+    {
+        return $this->prix === null ? null : $this->prix/100;
     }
 
     public function setPrix(int $prix): self

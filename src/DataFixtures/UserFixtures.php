@@ -65,9 +65,9 @@ class UserFixtures extends Fixture
         // Créer 2 admins
         for ($i = 0; $i < 2; $i++) {
             $admin = new User();
-            $hash = $this->passwordEncoder->encodePassword($admin, 'admin' . $i);
+            $hash = $this->passwordEncoder->encodePassword($admin, 'admin_annonce' . $i);
             $admin
-                ->setEmail('admin' . $i . '@mail.com')
+                ->setEmail('admin_annonce' . $i . '@mail.com')
                 ->setPassword($hash)
                 ->setRoles(['ROLE_ADMIN'])
                 ->setPseudo($faker->userName)
